@@ -17,7 +17,7 @@ app.use(express.json());
 
 // http://localhost:8000/
 
-const users = [];
+let users = [];
 
 app.get('/', (req, res) => {
   return res.json({
@@ -49,10 +49,29 @@ app.post('/users', (req, res) => {
 
 // atualizar um objeto do array onde passei via corpo da requisição as informações
 // e passei qual ID quero que seja atualizado por params
-app.put();
+app.put('/users/:id', (req, res) => {
+  users = users.map((user) => {
+    if (req.params.id == user.id) {
+      return {
+        ...user,
+        nome: req.body.nome ? req.body.nome : user.nome,
+        idade: req.body.idade ? req.body.idade : user.idade,
+      };
+    }
+    return user;
+  });
+  return res.json({
+    msg: 'Registro atualizado',
+  });
+});
 
 // remover do array um id que chegou por params
-app.delete();
+app.delete('/users/:id', (req, res) => {
+  users = users.filter((user) => user.id != req.params.id);
+  return res.json({
+    msg: 'Registro removido',
+  });
+});
 
 app.listen(8000, () => {
   users.push({
