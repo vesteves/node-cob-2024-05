@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:15.5-bullseye
+    container_name: aula04-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - aula03-network
+
+networks:
+  aula03-network:
+    driver: bridge

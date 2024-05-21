@@ -4,8 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const student_route_1 = __importDefault(require("./module/student/student.route"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use(student_route_1.default);
 app.listen(8000, () => {
     console.log('Servidor ON!');
 });
