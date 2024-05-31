@@ -2,9 +2,26 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Movie } from './movies/entities/movie.entity';
+import { GenresModule } from './genres/genres.module';
+import { Genre } from './genres/entities/genre.entity';
 
 @Module({
-  imports: [MoviesModule],
+  imports: [
+    MoviesModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      database: 'tmdb',
+      entities: [Movie, Genre],
+      synchronize: true,
+    }),
+    GenresModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

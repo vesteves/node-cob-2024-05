@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:15.5-bullseye
+    container_name: nestjs-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: tmdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - nestjs-network
+
+networks:
+  nestjs-network:
+    driver: bridge
