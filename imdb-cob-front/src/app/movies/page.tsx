@@ -1,7 +1,7 @@
-import Form from '@/components/organismo/Form';
+import LoginForm from '@/components/organismo/LoginForm';
 
 export const MoviesPage = () => {
-  return <Form />;
+  return <LoginForm />;
 };
 
 export default MoviesPage;

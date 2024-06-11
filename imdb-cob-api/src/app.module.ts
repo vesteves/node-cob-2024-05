@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Movie } from './movies/entities/movie.entity';
 import { GenresModule } from './genres/genres.module';
 import { Genre } from './genres/entities/genre.entity';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -21,8 +23,10 @@ import { Genre } from './genres/entities/genre.entity';
       synchronize: true,
     }),
     GenresModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
