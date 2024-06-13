@@ -29,6 +29,7 @@ export const LoginForm = () => {
   const onSubmit = () => {
     console.log(form);
     console.log('submeteu');
+    alert('Olá mundo!');
   };
 
   return (
@@ -52,6 +53,12 @@ export const LoginForm = () => {
       <Button color="blue" size="4" onClick={() => onSubmit()}>
         Enviar
       </Button>
+
+      {form.email && form.password && (
+        <div id="result">
+          O username é {form.email} e a senha é {form.password}
+        </div>
+      )}
     </Flex>
   );
 };
